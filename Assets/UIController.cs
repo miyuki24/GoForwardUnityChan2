@@ -16,7 +16,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //sceneビューから実体を取得
+        //sceneビューから実体を取得し代入
         this.gameOverText = GameObject.Find("GameOver");
         this.runLengthText = GameObject.Find("RunLength");
     }
@@ -31,8 +31,11 @@ public class UIController : MonoBehaviour
             this.runLengthText.GetComponent<Text>().text = "Distance: " + len.ToString("F2") + "m";
         }
     }
+    //ゲームオーバーになった時UnitychanControlleに呼び出される
     public void GameOver(){
+        //ゲームオーバーテキストにゲームオーバーと表示
         this.gameOverText.GetComponent<Text>().text = "GameOver";
+        //ゲームオーバー判定を下す
         this.isGameOver = true;
     }
 }
