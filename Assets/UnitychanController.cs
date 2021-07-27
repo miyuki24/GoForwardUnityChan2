@@ -40,7 +40,8 @@ public class UnitychanController : MonoBehaviour
             this.rigid2d.velocity = new Vector2(0, this.jumpVelocity);
         }
         //クリックボタンが離された時
-        if(Input.GetMouseButtonDown(0) == false){
+        if(Input.GetMouseButton(0) == false){
+            //Unityちゃんが
             if(this.rigid2d.velocity.y > 0){
                 //上方向への速度を減衰する
                 this.rigid2d.velocity *= this.dump;
