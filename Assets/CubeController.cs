@@ -25,4 +25,14 @@ public class CubeController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnCollisionEnter2D(Collision2D other){
+	    Debug.Log("OnTriggerEnterが呼ばれた");
+	    if(other.gameObject.tag == "groundTag" || other.gameObject.tag == "cubeTag"){
+		    GetComponent<AudioSource>().Play();
+	    }
+	    if(other.gameObject.tag == "UnitychanTag"){
+	        Debug.Log("Unityちゃんと衝突した");
+	    }
+    }
 }

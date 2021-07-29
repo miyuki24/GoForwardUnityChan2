@@ -13,8 +13,10 @@ public class UnitychanController : MonoBehaviour
     private float groundLevel = -3.0f;
     //ジャンプの速度(=高さ)
     float jumpVelocity = 20;
-
+    //ジャンプ速度の減衰
     private float dump = 0.8f;
+    //ゲームオーバーになる位置
+    private float deadLine = -9;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class UnitychanController : MonoBehaviour
         bool isGround = (transform.position.y > this.groundLevel)? false : true;
         //isGroundパラメータに結果を代入。着地している時は右方向に走るアニメーション
         this.animator.SetBool("isGround", isGround);
+        //着地しているときはVolumeを1に、ジャンプしているときは音を出さない
+        GetComponent<AudioSource>().volume = (isGround) ? 1:0;
 
         //Unityちゃんが着地した状態でクリックボタンが押された時
         if(Input.GetMouseButtonDown(0) && isGround){
@@ -46,6 +50,10 @@ public class UnitychanController : MonoBehaviour
                 //上方向への速度を減衰する
                 this.rigid2d.velocity *= this.dump;
             }
+        }
+        if(this.transform.position.x < this.deadLine){
+            GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
+            Destroy(this.gameObject);
         }
     }
 }

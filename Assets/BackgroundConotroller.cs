@@ -9,7 +9,7 @@ public class BackgroundConotroller : MonoBehaviour
     //背景終了位置
     private float deadLine = -16;
     //背景開始位置(背景の流れを自然に見せるためあえてきしょい数にしている)
-    private float startLine = -15.8f;
+    private float startLine = 15.8f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class BackgroundConotroller : MonoBehaviour
         //経過時間によって背景を移動させる
         transform.Translate(this.scrollSpeed * Time.deltaTime, 0 , 0);
         //画面外に出たら画面右端に移動する
-        if(transform.position.x < deadLine){
+        if(transform.position.x < this.deadLine){
             transform.position = new Vector2(this.startLine, 0);
         }
     }

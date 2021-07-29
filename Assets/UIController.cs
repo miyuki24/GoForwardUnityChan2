@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -29,6 +30,14 @@ public class UIController : MonoBehaviour
             //走行距離を更新する。距離 = 時間 × 速さ　
             this.len += this.speed * Time.deltaTime;
             this.runLengthText.GetComponent<Text>().text = "Distance: " + len.ToString("F2") + "m";
+        }
+        //ゲームオーバーになった場合
+        if (this.isGameOver == true){
+            //クリックされたらシーンをロードする
+            if (Input.GetMouseButtonDown (0)){
+                //SampleSceneを読み込む
+                SceneManager.LoadScene ("SampleScene");
+            }
         }
     }
     //ゲームオーバーになった時UnitychanControlleに呼び出される
